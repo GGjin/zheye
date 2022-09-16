@@ -1,17 +1,19 @@
 <template>
     <div class="container">
         <global-header :user="currentUser" />
-        <form action="">
+        <valiate-form @form-submit="onFormSubmit">
             <div class="mb-3">
                 <label class="form-label">邮箱地址</label>
                 <validate-input :rules="emailRules" v-model="emailVal" type="text" placeholder="请输入邮箱地址" />
-                {{ emailVal }}
             </div>
             <div class="mb-3">
                 <label class="form-label">密码</label>
                 <validate-input :rules="emailRules" type="password" placeholder="请输入密码" />
             </div>
-        </form>
+            <template #submit>
+                <span class="btn btn-danger">Submit</span>
+            </template>
+        </valiate-form>
     </div>
 </template>
 
@@ -21,6 +23,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { ColumnProps } from './components/ColumnList.vue';
 import GlobalHeader, { UserProps } from './components/GlobalHeader.vue';
 import ValidateInput, { RelesProp } from './components/ValidateInput.vue';
+import ValiateForm from './components/ValidateForm.vue';
+
 const currentUser: UserProps = {
     isLogin: true,
     name: 'GG',
@@ -60,9 +64,10 @@ export default defineComponent({
         // ColumnList,
         GlobalHeader,
         ValidateInput,
+        ValiateForm,
     },
     setup() {
-        const emailVal = ref('GG');
+        const emailVal = ref();
         const emailRules: RelesProp = [
             { type: 'required', message: '电子邮箱地址不能为空' },
             { type: 'email', message: '请输入正确的电子邮箱格式' },
@@ -83,6 +88,10 @@ export default defineComponent({
                 emailRef.message = 'should be valid message';
             }
         };
+
+        const onFormSubmit = (result: boolean) => {
+            console.log(result);
+        };
         return {
             list: testData,
             currentUser,
@@ -90,6 +99,7 @@ export default defineComponent({
             validateEmail,
             emailRules,
             emailVal,
+            onFormSubmit,
         };
     },
 });
