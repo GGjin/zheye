@@ -3,6 +3,10 @@
     <global-header :user="currentUser" />
     <form action="">
       <div class="mb-3">
+        <label class="form-label">邮箱地址</label>
+        <validate-input :rules="emailRules" />
+      </div>
+      <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">邮箱地址</label>
         <input type="text" class="form-control" id="exampleInputEmail1" v-model="emailRef.val" @blur="validateEmail" />
         <div class="form-text" v-if="emailRef.error">{{emailRef.message}}</div>
@@ -20,7 +24,7 @@ import { defineComponent, reactive } from "vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ColumnProps } from "./components/ColumnList.vue";
 import GlobalHeader, { UserProps } from "./components/GlobalHeader.vue";
-
+import ValidateInput, { RelesProp } from "./components/ValidateInput.vue";
 const currentUser: UserProps = {
   isLogin: true,
   name: "GG",
@@ -62,8 +66,14 @@ export default defineComponent({
   components: {
     // ColumnList,
     GlobalHeader,
+    ValidateInput,
   },
   setup() {
+    const emailRules: RelesProp = [
+      { type: 'required', message: '电子邮箱地址不能为空' },
+      { type: 'email', message: '请输入正确的电子邮箱格式' }
+    ]
+
     const emailRef = reactive({
       val: '',
       error: false,
@@ -83,7 +93,8 @@ export default defineComponent({
       list: testData,
       currentUser,
       emailRef,
-      validateEmail
+      validateEmail,
+      emailRules
     };
   },
 });
