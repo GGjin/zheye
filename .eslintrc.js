@@ -29,14 +29,14 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-unused-vars': [
-      'error',
+      1,
       {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_'
       }
     ],
     'no-unused-vars': [
-      'error',
+      1,
       {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_'
@@ -64,6 +64,6 @@ module.exports = {
     ],
     semi: 0,
     quotes: 'off',
-    'comma-dangle': 'off'
+    'comma-dangle': 'off',
   }
 }
