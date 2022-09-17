@@ -7,12 +7,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+import { GlobalDataProps } from '../store';
 export default defineComponent({
     setup() {
         const route = useRoute();
-        return { route };
+        const store = useStore<GlobalDataProps>();
+        const currentId = +route.params.id;
+        const column = computed(() => store.getters.getColumnById(currentId));
+        const list = computed(() => store.getters.getPostsByCid(currentId));
+        return { route, list, column };
     },
 });
 </script>
