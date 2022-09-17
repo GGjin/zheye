@@ -4,15 +4,15 @@
         <valiate-form @form-submit="onFormSubmit">
             <div class="mb-3">
                 <label class="form-label">邮箱地址</label>
-                <validate-input :rules="emailRules" v-model="emailVal" type="text" placeholder="请输入邮箱地址" />
+                <validate-input :rules="emailRules" v-model="emailVal" type="text" placeholder="请输入邮箱地址" ref="inputRef" />
             </div>
             <div class="mb-3">
                 <label class="form-label">密码</label>
                 <validate-input :rules="emailRules" type="password" placeholder="请输入密码" />
             </div>
-            <template #submit>
+            <!-- <template #submit>
                 <span class="btn btn-danger">Submit</span>
-            </template>
+            </template> -->
         </valiate-form>
     </div>
 </template>
@@ -67,6 +67,7 @@ export default defineComponent({
         ValiateForm,
     },
     setup() {
+        const inputRef = ref<any>();
         const emailVal = ref();
         const emailRules: RelesProp = [
             { type: 'required', message: '电子邮箱地址不能为空' },
@@ -90,7 +91,7 @@ export default defineComponent({
         };
 
         const onFormSubmit = (result: boolean) => {
-            console.log(result);
+            console.log('result', result);
         };
         return {
             list: testData,
@@ -100,6 +101,7 @@ export default defineComponent({
             emailRules,
             emailVal,
             onFormSubmit,
+            inputRef,
         };
     },
 });
