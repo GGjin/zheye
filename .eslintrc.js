@@ -72,5 +72,6 @@ module.exports = {
     semi: 0,
     quotes: 'off',
     'comma-dangle': 'off',
+    lintOnSave: 0
   }
 }

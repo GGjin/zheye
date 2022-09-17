@@ -24,9 +24,9 @@ export default defineComponent({
             context.emit('form-submit', result);
         };
 
-        const callback = (func: ValidateFunc) => {
-            funcArr.push(func);
-        };
+        // const callback = (func: ValidateFunc) => {
+        //     funcArr.push(func);
+        // };
         // emitter.on('form-item-created', callback);
         onUnmounted(() => {
             // emitter.off('form-item-created', callback);

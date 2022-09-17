@@ -22,10 +22,10 @@ interface RuleProp {
     type: 'required' | 'email';
     message: string;
 }
-export type RelesProp = RuleProp[];
+export type RulesProp = RuleProp[];
 export default defineComponent({
     props: {
-        rules: Array as PropType<RelesProp>,
+        rules: Array as PropType<RulesProp>,
         modelValue: String,
     },
     setup(props, context) {
