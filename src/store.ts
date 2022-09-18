@@ -1,4 +1,3 @@
-import { def } from '@vue/shared';
 import { createStore } from 'vuex';
 import { testData, testPosts, ColumnProps, PostProps } from './testData';
 interface UserProps {
